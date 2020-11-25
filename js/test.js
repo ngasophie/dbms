@@ -82,15 +82,80 @@ function getTotalMoneyByOrderId(id) {
         })
 }
 
-function getUserOrderMaxAmount() {
+async function getUserOrderMaxAmount() {
+    let user = null;
+    let amount = 0;
+    let isFirstRun = true;
     firebase.database().ref('/user')
         .once('value').then((snapshot) => {
+            // if (isFirstRun) {
+            //     isFirstRun = false;
+            //     return;
+            // }
             console.log(snapshot.val())
+            for (let v of Object.values(snapshot.val())) {
+                let tmp = 0;
+                console.log(v.id)
+                try {
+
+                    firebase.database().ref('/order/')
+                        .orderByChild('userid')
+                        .equalTo(v.id)
+                        .on("child_added", function(snapshot) {
+                            tmp++;
+                            if (tmp > amount) {
+                                amount = tmp
+                                user = v;
+                                document.getElementsByClassName('container')[0].innerHTML = user.name
+                            }
+                            console.log(snapshot.val())
+                        })
+                } catch (e) {}
+            }
         })
 }
 //  get product order max
 function getProductOrderMaxAmount() {
+    firebase.database().ref('/orderdetails/')
+        .once('value').then((snapshot) => {
+            let arr = snapshot.val();
+            for (let i = 0; i < arr.length; i++) {
+                let count = 0;
+                for (let j = i + 1; j < arr.length; j++) {
+                    if (arr[i] == arr[j]) {
+                        count++;
+                        arr.splice(j, 1);
+                    }
+
+                }
+            }
+
+        })
 
 }
+
 // get product max count
-getUserOrderMaxAmount();
+// getUserOrderMaxAmount();
+// getProductOrderMaxAmount();
+let arr = [1, 1, 1, 1, 1, 4, 4, 4]
+let max = 0;
+let value = null;
+for (let i = 0; i < arr.length; i++) {
+    let count = 1;
+    for (let j = i + 1; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {
+            count++;
+            arr.splice(j, 1);
+            if (count > max) {
+                max = count;
+                value = arr[i];
+            }
+            console.log(arr)
+
+        }
+
+    }
+
+}
+console.log(max)
+console.log(value)
