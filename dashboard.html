@@ -9,71 +9,72 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyDUTFVZr07Nq0kEINKnzxCvi4GKn4L5Jp4",
+            authDomain: "dbms-91252.firebaseapp.com",
+            databaseURL: "https://dbms-91252.firebaseio.com",
+            projectId: "dbms-91252",
+            storageBucket: "dbms-91252.appspot.com",
+            messagingSenderId: "262867192818",
+            appId: "1:262867192818:web:9990977d20f9f75740796b",
+            measurementId: "G-N6KQ5ZFJEH"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 </head>
 
 <body>
     <div class="container">
         <ul class="nav mt-3">
             <li class="nav-item">
-                <a class="nav-link active" href="home.html">Trang chủ</a>
+                <a class="nav-link active" href="#">Trang chủ</a>
             </li>
         </ul>
     </div>
-    <div class="container">
-        <form>
-            <div class="form-row col-md-6">
-                <div class="form-group col-md-4">
+    <div class="container"> Chọn orderid nếu muốn xem tổng số tiền trên order có id nhập vào/ Chọn userid nếu muốn lấy chi tiết đơn đặt hàng của user có id nhập vào
+        <form id="form">
+            <div class="form-row col-md-12">
+                <div class="form-group col-md-2">
                     <label for="inputState">By</label>
-                    <select id="inputState" class="form-control">
+                    <select id="inputState" class="form-control" name='select'>
                   <option selected>Choose...</option>
                   <option>orderid</option>
                   <option>userid</option>
-                  <option>userid</option>
                 </select>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
                     <label for="inputCity">input id</label>
-                    <input type="text" class="form-control" id="inputCity">
+                    <input type="number" class="form-control" min=0 id="inputCity" name='id'>
                 </div>
 
+                <div class="time" style="margin-left:50px; font-size:25px">Time: </div>
             </div>
             <button type="submit" class="btn btn-primary">Check</button>
         </form>
+        <button id='getProduct' class="btn btn-success mt-5">Lấy ra sản phẩm có giá cao nhất</button>
+        <button id='getUser' class="btn btn-success mt-5">Lấy người order nhiều nhất</button>
     </div>
-    <div class="container mt-3">
-        <div class="title" style="font-size: 25px; font-weight:bold; text-align: center;"></div>
+    <div class=" container mt-3 ">
+        <div class="title " style="font-size: 25px; font-weight:bold; text-align: center; "></div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
+        <table class="table ">
+
         </table>
     </div>
+    <script src="./js/test.js"></script>
 </body>
 
 </html>
