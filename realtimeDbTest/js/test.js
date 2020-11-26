@@ -19,7 +19,7 @@ window.onload = function() {
         getProductMaxPrice();
     })
     document.getElementById('getUser').addEventListener('click', function() {
-                        console.log(1)
+        console.log(1)
 
         getUserOrderMaxAmount()
     })
@@ -135,7 +135,7 @@ function getUserOrderMaxAmount() {
                                 amount = tmp
                                 user = v;
                                 document.getElementsByClassName('container')[0].innerHTML = user.name;
-                                content += `
+                                content = `
                                 <tr>
                                     <td>${v.name}</td>
                                     <td>${v.email}</td>
